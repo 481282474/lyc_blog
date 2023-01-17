@@ -1,0 +1,30 @@
+server:
+  port: 8080
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+    #开启mvc模板解析
+    enabled: true
+    encoding: UTF-8
+    mode: HTML
+    check-template-location: true
+    servlet:
+      content-type: text/html
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/lyc_blog?useSSL=false&serverTimezone=UTC
+      username: root
+      password: 141592
+
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: ASSIGN_ID
+  configuration:
+    #开启日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #开启驼峰命名
+    map-underscore-to-camel-case: true

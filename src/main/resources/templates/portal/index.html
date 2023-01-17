@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorate="~{portal/layout}">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="author" th:content="${#servletContext.getAttribute('paramMap')['author']}">
+		<title th:text="${#servletContext.getAttribute('paramMap')['blogName']}">个人博客</title>
+		<meta name="description" th:content="${#servletContext.getAttribute('paramMap')['description']}" />
+		<meta name="keywords" th:content="${#servletContext.getAttribute('paramMap')['keywords']}" />
+	</head>
+
+	<body class="home blog custom-background round-avatars" >
+		<div id="main" class="content" layout:fragment="content">
+			<div class="container">
+				<article itemscope="itemscope" th:if="${pageInfo.size > 0}">
+					<div class="posts-list js-posts">
+						<div class="post post-layout-list" data-aos="fade-up" th:each="paper : ${pageInfo.getRecords()}">
+							<div class="postnormal review leancloud_visitors" th:id="'/' + ${paper.id}">
+								<div class="post-container review-item">
+									<div class="row review-item-wrapper">
+										<div class="col-sm-12 flex-xs-middle">
+											<div class="review-item-title">
+												<a th:href="@{'/' + ${paper.title}}"  rel="bookmark">[[${paper.title}]]</a>
+											</div>
+											<div class="review-item-creator"><b>更新日期：</b>[[${paper.updateTime}]]</div>
+											<div class="review-item-creator"><b>标签：</b>[[${paper.tags}]]</div>
+
+										</div>
+									</div>
+									<div class="review-bg-wrapper">
+										<div th:if="${#strings.startsWith(paper.imgUrl,'material')}">
+											<div class="bg-blur" th:style="'background-image: url(/portal/images/random/'+${paper.imgUrl}+');'"></div>
+										</div>
+										<div th:if="${#strings.startsWith(paper.imgUrl,'material') eq false}">
+											<div class="bg-blur" th:style="'background-image: url('+${paper.imgUrl}+');'"></div>
+										</div>
+									</div>
+								</div>
+								<div class="post-container">
+									<div class="entry-content">[[${paper.subContent}]]</div>
+									<div class="post-footer">
+										<a class="gaz-btn primary" th:href="@{'/detail/' + ${paper.id}}">阅读全文</a>
+										<span class="total-comments-on-post pull-right"><a style="color:#b7c6d7;"> [[${paper.categoryId}]]</a></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<nav class="pagination js-pagination">
+						<span th:if="${pageInfo.hasPrevious()}">
+							<a class="prev page-numbers" th:href="@{${pageInfo.pageNum-1} == 1 ? '/' : '/page/' + ${pageInfo.pageNum-1}+'/'}" ><strong>←</strong></a>
+						</span>
+
+						<a th:href="@{${pageInfo.getCurrent()} == 1 ? '/' : '/page/' + ${pageInfo.getCurrent()}+'/'}" th:text="${pageInfo.getCurrent()}" class="page-numbers"></a>
+
+						<span th:if="${pageInfo.hasNext()}">
+							<a class="next page-numbers" th:href="@{'/page/' + ${pageInfo.pageNum+1}+'/'}" ><strong>→</strong></a>
+						</span>
+					</nav>
+				</article>
+				<div th:if="${pageInfo.size == 0}" th:style="'text-align:center;'" th:text="'~~找不到数据~~'"></div>
+			</div>
+			<div th:if="${#strings.isEmpty(#servletContext.getAttribute('paramMap')['leancloud_app_id']) eq false}">
+
+				<script type='text/javascript' th:src="@{/portal/js/jquery.min.js}"></script>
+				<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+			</div>
+		</div>
+	</body>
+
+</html>

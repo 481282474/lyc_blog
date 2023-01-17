@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout" layout:decorate="~{portal/layout}">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="author" th:content="${#servletContext.getAttribute('paramMap')['author']}">
+		<title>个人博客</title>
+		<meta name="description" th:content="${#servletContext.getAttribute('paramMap')['description']}" />
+		<meta name="keywords" th:content="${#servletContext.getAttribute('paramMap')['keywords']}" />
+		<link rel="stylesheet" type="text/css" th:href="@{/portal/css/detail.css}" />
+		<link th:href="@{/portal/js/highlight/styles/github.css}" rel="stylesheet" type="text/css">
+	</head>
+
+	<body class="home blog custom-background round-avatars" itemscope itemtype="http://schema.org/Organization">
+		<div id="main" class="content" layout:fragment="content">
+			<div class="container">
+				<article id="post-1202" style="padding: 40px 0px;" class="js-gallery post-1202 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized tag-11 tag-22 tag-29">
+					<section class="post_content">
+						<header class="post_header" th:style="'text-align:center'">
+							<h1 class="post_title">关于作者</h1>
+						</header>
+						<div th:if="${#strings.isEmpty(aboutMe) eq false}" class="" th:utext="${aboutMe.content}"></div>
+						<div th:if="${#strings.isEmpty(aboutMe)}" th:style="'text-align:center;'" th:text="'~~作者偷懒，没有自我介绍~~'"></div>
+					</section>
+				</article>
+				<script type='text/javascript' th:src="@{/portal/js/jquery.min.js}"></script>
+				<script type='text/javascript' th:src="@{/portal/js/highlight/highlight.pack.js}"></script>
+				<script type='text/javascript' th:src="@{/portal/js/highlight.js}"></script>
+			</div>
+			<div class="wrapper">
+			</div>
+		</div>
+
+	</body>
+
+</html>
