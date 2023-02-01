@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Random;
 
 /**
  * 文章管理
@@ -73,7 +74,14 @@ public class PaperController {
     @PostMapping("/save")
     public Result save(@Valid Paper paper){
         try{
-            paperService.updateById(paper);
+
+            if(paper.getId()==null){
+                paper.setImgUrl("material-" + (new Random().nextInt(30) + 1) + ".jpg");
+                paperService.save(paper);
+            }else {
+
+                paperService.updateById(paper);
+            }
 
             return Result.success(paper);
         }catch (Exception e){

@@ -11,7 +11,7 @@ lyc-blog 是基于 Spring Boot + Mybatis-plus + Mysql 开发的一套个人博�
 - 核心框架：SpringBoot
 - 持久层框架：Mybatis-Plus
 - 数据库连接池：Allibaba Druid
-- 工具类：Lombok
+- 工具类：Lombok,七牛云
 
 ### 前端
 
@@ -19,3 +19,6 @@ lyc-blog 是基于 Spring Boot + Mybatis-plus + Mysql 开发的一套个人博�
 - JS框架：Jquery
 - CSS框架：Bootstrap
 - HTML模板框架：Thymeleaf
+
+
+

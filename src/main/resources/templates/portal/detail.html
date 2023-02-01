@@ -32,10 +32,10 @@
 								<strong>本文作者:</strong> [[${#servletContext.getAttribute('paramMap')['author']}]]
 							</li>
 							<li>
-								<strong>本文链接:</strong> <a id="shareUrl" th:href="@{${#servletContext.getAttribute('paramMap')['homePage']} + '/'+${paper.title}}" target="_blank" th:text="${#servletContext.getAttribute('paramMap')['homePage']+'/'+paper.title}"></a>
+								<strong>本文链接:</strong> <a id="shareUrl" th:href="${paper.id}" target="_blank" th:text="${#servletContext.getAttribute('paramMap')['homePage']+'/'+paper.title}"></a>
 							</li>
 							<li>
-								<strong>版权声明:</strong>  本博客所有文章除特别声明外均为原创，采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC 4.0</a> 许可协议。转载请注明原文出处，谢谢合作！
+								<strong>版权声明:</strong>  本博客所有文章除特别声明外均为原创，采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC 4.0</a> 许可协议。转载请注明原文出处。
 							</li>
 						</ul>
 						<div class="meta split split--responsive cf">
